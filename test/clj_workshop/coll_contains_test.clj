@@ -3,7 +3,7 @@
             [clj-workshop.utils :refer :all]
             [clojure.test :refer :all]))
 
-#_(deftest coll-contains
+(deftest coll-contains
   (with-redefs [reduce (unavailable-fn "reduce")
                 map (unavailable-fn "reduce")
                 filter (unavailable-fn "reduce")

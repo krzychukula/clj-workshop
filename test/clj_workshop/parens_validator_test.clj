@@ -3,7 +3,7 @@
             [clj-workshop.utils :refer :all]
             [clojure.test :refer :all]))
 
-#_(deftest parens-validation
+(deftest parens-validation
   (with-redefs [reduce (unavailable-fn "reduce")
                 map (unavailable-fn "reduce")
                 filter (unavailable-fn "reduce")]
