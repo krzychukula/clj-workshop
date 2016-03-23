@@ -9,4 +9,5 @@
                 filter (unavailable-fn "reduce")]
     (is (true? (parens-balanced? "((((( a )(b ( c(\n((()))))) e, f :g))))")))
     (is (false? (parens-balanced? "(((((()))()))")))
+    (is (false? (parens-balanced? ")(")))
     (is (true? (parens-balanced? "")))))
