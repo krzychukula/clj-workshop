@@ -107,7 +107,7 @@
   str
   (filter
    even?
-   (range 10))))
+   (range 10 0 -1))))
 
 (as-> 10 it
       (range it)
@@ -133,6 +133,7 @@
 
 (magic 5 6)
 
+
 ;; Partial application
 
 (def add-5 (partial + 5))
@@ -143,40 +144,70 @@
 
 (reduce
  (fn [acc x] (+ acc x))
- (range 10))
+  0
+ (range 3))
+;; 0 + 0 + 1 + 2 = 3
+
+(reduce
+ (fn [acc x] (+ acc x))
+ (range 3))
+;; 0 + 1 + 2 = 3
+
 (reduce + 100 (range 10))
+;; reduce is not consitent - sometimes it uses first elements
+;; and sometimes expects '+' called without arguments to
+;; return identity - to be used as first value of accumulator
+
+
 
 ;; Sequential destructuring
 
 (let [[x1 x2] [1 2 3]]
   (println x1 x2))
+;; 1 2
+
 
 (let [[x & xs] [1 2 3]]
   (println x xs))
+;; 1 (2 3)
+
 
 (let [[x1 x2 x3] [1 2]]
   (println x1 x2 x3))
+;; 1 2 nil
+
 
 (let [[x1 x2 :as xs] [1 2 3]]
   (println x1 x2)
   (println xs))
+;; 1 2
+;; [1 2 3]
+
 
 ;; Map destructuring
 
 (let [{a :a} {:a 1 :b 2}]
   (println a))
+;; 1
 
 (let [{a :a :as m}
       {:a 1 :b 2}]
   (println a m))
+;; 1 {:a 1, :b 2}
+
 
 (let [{:keys [a b] :as m}
       {:a 1, :b 2, :c 3}]
   (println a b m))
+;; 1 2 {:a 1, :b 2, :c 3}
+
 
 (let [{:keys [a b d] :or {a 0 d 4}}
       {:a 1, :b 2, :c 3}]
   (println a b d))
+;; 1 2 4// d is from :or {a 0 d 4}
+
+
 
 (defn configure [opts]
   (let [{:keys [volume bass treble]
@@ -184,6 +215,7 @@
     (println "Config" (keyed [volume bass treble]))))
 
 (configure {:volume 1})
+;; Config {:volume 1, :bass 3, :treble 2}
 
 (defn configure' [{:keys [volume bass treble]
                    :or {volume 5 bass 3 treble 2}}]
