@@ -1,18 +1,29 @@
 (ns clj-workshop.func-prog-exe
   (:require [clj-workshop.utils :refer :all]))
 
+;; (defn count-chars
+;;   "Returns count of the provided character `c` in string `s`"
+;;   [[current & tail :as s] c]
+;;   (if (empty? s) 0
+;;     (if (= current c)
+;;       (inc (count-chars tail c))
+;;       (count-chars tail c))))
+
 (defn count-chars
   "Returns count of the provided character `c` in string `s`"
   [s c]
-  (unimplemented))
+  (->> s
+       (filter #(= c %))
+       (count)))
 
 (defn candidate-names
   [candidates]
-  (unimplemented))
+  (map :name candidates))
+
 
 (defn candidates-with-minimum-rating
   [min-rating candidates]
-  (unimplemented))
+  (filter #(> (:rating %) 8) candidates))
 
 (defn palindrome?
   "Checks if the given sequence is a palindrome"

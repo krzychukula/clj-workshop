@@ -53,7 +53,7 @@
 (some even? [1 2 3])
 ;; returns result of predicate that is truthy
 (some (fn [a]
-  (if (= a 2) a false)) [1 2 3])
+       (if (= a 2) a false)) [1 2 3])
 
 (some even? [1 3 5])
 
@@ -144,7 +144,7 @@
 
 (reduce
  (fn [acc x] (+ acc x))
-  0
+ 0
  (range 3))
 ;; 0 + 0 + 1 + 2 = 3
 
