@@ -1,6 +1,6 @@
 (ns clj-workshop.coll-contains-test
   (:require [clj-workshop.coll-contains :refer :all]
-            [clj-workshop.utils :refer :all]
+            [clj-workshop.test-utils :refer :all]
             [clojure.test :refer :all]))
 
 (deftest coll-contains

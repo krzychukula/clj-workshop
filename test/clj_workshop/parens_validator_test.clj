@@ -1,6 +1,6 @@
 (ns clj-workshop.parens-validator-test
   (:require [clj-workshop.parens-validator :refer :all]
-            [clj-workshop.utils :refer :all]
+            [clj-workshop.test-utils :refer :all]
             [clojure.test :refer :all]))
 
 (deftest parens-validation

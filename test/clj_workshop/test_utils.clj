@@ -1,4 +1,4 @@
-(ns clj-workshop.utils)
+(ns clj-workshop.test-utils)
 
 (defn unavailable-fn
   [name]
