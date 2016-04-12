@@ -8,6 +8,8 @@
 
 #(+ % 5)
 
+(#(+ % 5) 5)
+
 (fn [a1 a2 a3])
 
 #(+ % %2 %3)
@@ -23,6 +25,7 @@
 (range 5 20 3)
 
 ;; don't do this at home (:
+;; infinite range:
 #_(range)
 
 (reverse (range 5 10))
@@ -31,19 +34,26 @@
 ;; this one is safe
 (take 10 (range))
 
+;; drop returns lazy sequence as well
 (drop 3 (range 10))
 
+;; stops when predicate returns false
 (take-while #(< % 10)
             (range 100))
 
 (drop-while #(< % 10)
             (range 20))
 
+;; pass filter if predicate is true
 (filter even? (range 10))
 
 (remove even? (range 10))
 
+
 (some even? [1 2 3])
+;; returns result of predicate that is truthy
+(some (fn [a]
+  (if (= a 2) a false)) [1 2 3])
 
 (some even? [1 3 5])
 
@@ -51,26 +61,37 @@
 
 (every? even? [2 4])
 
+
 (map even? (range 10))
 
 (map nil? [1 nil true false])
 
 (map inc [1 2 3])
 
+;; keywards and symbols are functions
 (map :type
      [{:name "John"}
       {:name "Joe"}])
+;; (nil nil)
+
+(map :name
+     [{:name "John"}
+      {:name "Joe"}])
+;; ("John" "Joe")
+
 
 (map (fn [a b]
-       (println "a" a "b" b))
+       [a b])
      [:x :y]
-     [1 2])
+     [1 2 3])
+;; 3 will be ignored
+
 
 (sort [2 4 1 6 7])
 (sort-by :name
          [{:name "John"}
           {:name "Adam"}
-          {:name "Paul"}])
+          {:name "Ąaul"}])
 
 (frequencies [1 2 3 2 1 1])
 (group-by
